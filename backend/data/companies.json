@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "SolarTech Innovators",
+        "description": "Leading providers of residential solar solutions in the metro area.",
+        "contactEmail": "contact@solartechinnovators.com",
+        "phone": "+1 (555) 123-4567",
+        "rating": 4.8
+    },
+    {
+        "id": 2,
+        "name": "GreenGrid Energy",
+        "description": "Affordable, customized solar and battery integrations.",
+        "contactEmail": "info@greengridenergy.com",
+        "phone": "+1 (555) 987-6543",
+        "rating": 4.6
+    },
+    {
+        "id": 3,
+        "name": "SunPower Installers",
+        "description": "Premium panels with 25-year comprehensive warranties.",
+        "contactEmail": "sales@sunpowerinstall.com",
+        "phone": "+1 (555) 456-7890",
+        "rating": 4.9
+    }
+]

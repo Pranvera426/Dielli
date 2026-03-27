@@ -1,0 +1,109 @@
+[
+  {
+    "id": 1774617986816,
+    "timestamp": "2026-03-27T13:26:26.816Z",
+    "name": "Orgesa",
+    "surname": "Krasniqi",
+    "phone": "+38345266110",
+    "email": "orgesakrasniqi70@gmail.com",
+    "installer": "EcoPower Solutions",
+    "calculations": {
+      "monthlyUsage": 668,
+      "systemKw": "4.95",
+      "panels": 11,
+      "estimatedCost": 5940,
+      "annualSavings": 1203,
+      "roiYears": "4.9"
+    }
+  },
+  {
+    "id": 1774618509898,
+    "timestamp": "2026-03-27T13:35:09.898Z",
+    "name": "Orgesa",
+    "surname": "Krasniqi",
+    "phone": "+38345266110",
+    "email": "orgesakrasniqi70@gmail.com",
+    "installer": "EcoPower Solutions",
+    "calculations": {
+      "monthlyUsage": 668,
+      "systemKw": "4.95",
+      "panels": 11,
+      "estimatedCost": 5940,
+      "annualSavings": 1203,
+      "roiYears": "4.9"
+    },
+    "syncedToCloud": false
+  },
+  {
+    "id": 1774618676291,
+    "timestamp": "2026-03-27T13:37:56.291Z",
+    "name": "Orgesa",
+    "surname": "Krasniqi",
+    "phone": "+38345266110",
+    "email": "orgesakrasniqi70@gmail.com",
+    "installer": "EcoPower Solutions",
+    "calculations": {
+      "monthlyUsage": 668,
+      "systemKw": "4.95",
+      "panels": 11,
+      "estimatedCost": 5940,
+      "annualSavings": 1203,
+      "roiYears": "4.9"
+    },
+    "syncedToCloud": false
+  },
+  {
+    "id": 1774619148801,
+    "timestamp": "2026-03-27T13:45:48.801Z",
+    "name": "Orgesa",
+    "surname": "Krasniqi",
+    "phone": "+38345266110",
+    "email": "orgesakrasniqi70@gmail.com",
+    "installer": "EcoPower Solutions",
+    "calculations": {
+      "monthlyUsage": 668,
+      "systemKw": "4.95",
+      "panels": 11,
+      "estimatedCost": 5940,
+      "annualSavings": 1203,
+      "roiYears": "4.9"
+    },
+    "syncedToCloud": false
+  },
+  {
+    "id": 1774619213504,
+    "timestamp": "2026-03-27T13:46:53.504Z",
+    "name": "Orgesa",
+    "surname": "Krasniqi",
+    "phone": "+38345266110",
+    "email": "orgesakrasniqi70@gmail.com",
+    "installer": "EcoPower Solutions",
+    "calculations": {
+      "monthlyUsage": 729,
+      "systemKw": "4.05",
+      "panels": 9,
+      "estimatedCost": 4860,
+      "annualSavings": 1312,
+      "roiYears": "3.7"
+    },
+    "syncedToCloud": false
+  },
+  {
+    "id": 1774619491018,
+    "timestamp": "2026-03-27T13:51:31.018Z",
+    "name": "Test",
+    "surname": "Test",
+    "phone": "+383",
+    "email": "test@gmail.com",
+    "installer": "EcoPower Solutions",
+    "calculations": {
+      "monthlyUsage": 729,
+      "systemKw": "4.05",
+      "panels": 9,
+      "estimatedCost": 4860,
+      "annualSavings": 1312,
+      "roiYears": "3.7"
+    },
+    "syncedToCloud": false
+  }
+]
