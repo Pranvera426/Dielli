@@ -14,7 +14,8 @@ import {
   SafeAreaView,
   StatusBar
 } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
+const MapView = Platform.OS === 'web' ? View : require('react-native-maps').default;
+const Marker = Platform.OS === 'web' ? View : require('react-native-maps').Marker;
 import axios from 'axios';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Location from 'expo-location';
@@ -44,7 +45,7 @@ import {
 
 const { width } = Dimensions.get('window');
 
-const API_BASE = 'http://192.168.0.111:5000';
+const API_BASE = 'http://192.168.1.159:5000';
 
 const ROOF_MATERIALS = [
   { id: 'shingle', label: 'Composition Shingle', factor: 1.0, icon: Home },
