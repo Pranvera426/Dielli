@@ -3,7 +3,7 @@ const router = express.Router();
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
-const nodemailer = require('nodemailer');
+const { Resend } = require('resend');
 const { createClient } = require('@supabase/supabase-js');
 require('dotenv').config();
 
@@ -25,16 +25,8 @@ const supabase = createClient(
     process.env.SUPABASE_KEY || 'placeholder'
 );
 
-// NODEMAILER SETTINGS (REAL GMAIL SUPPORT)
-const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST || 'smtp.gmail.com',
-    port: parseInt(process.env.SMTP_PORT || '465'),
-    secure: true, 
-    auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASSWORD
-    }
-});
+// RESEND CLIENT INITIALIZATION
+const resend = new Resend(process.env.RESEND_API_KEY || 're_placeholder');
 
 router.post('/', upload.single('floorPlan'), async (req, res) => {
     try {
@@ -81,41 +73,40 @@ router.post('/', upload.single('floorPlan'), async (req, res) => {
         leads.push(newLead);
         fs.writeFileSync(LEADS_PATH, JSON.stringify(leads, null, 2));
 
-        // 3. AUTOMATION: TWO EMAILS
-        if (process.env.SMTP_USER && process.env.SMTP_PASSWORD) {
+        // 3. AUTOMATION: TWO EMAILS via RESEND
+        if (process.env.RESEND_API_KEY && process.env.RESEND_API_KEY !== 're_placeholder') {
             
             // --- EMAIL 1: TO USER (Thank You) ---
-            const userMailOptions = {
-                from: `"DIELL Solar" <${process.env.SMTP_USER}>`,
-                to: email,
-                subject: 'Thank You for Choosing DIELL Solar! ☀️',
+            const userEmailData = {
+                from: 'Dielli <onboarding@resend.dev>',
+                to: [email],
+                subject: 'Thank You for Your Request – Dielli Solar',
                 html: `
                     <div style="font-family: sans-serif; padding: 20px; color: #333;">
-                        <h1 style="color: #10b981;">Hello ${name}!</h1>
-                        <p>Thank you for using the <strong>DIELL Solar Estimator</strong>. We have successfully received your inquiry for <strong>${installer}</strong>.</p>
-                        <p>Your precision solar report is attached to this inquiry. A certified professional will reach out to you at <strong>${phone}</strong> shortly.</p>
-                        <hr />
-                        <h3>Your Precision Estimate Summary:</h3>
-                        <ul>
-                            <li><strong>Annual Savings:</strong> €${calcObj.annualSavings}</li>
-                            <li><strong>ROI Timeline:</strong> ${calcObj.roiYears} years</li>
-                            <li><strong>Panels Needed:</strong> ${calcObj.panels} (450W)</li>
-                        </ul>
-                        <p>Welcome to the clean energy future.</p>
-                        <br />
-                        <p>Best regards,<br/><strong>The DIELL Team</strong></p>
+                        <p>Dear ${name},</p>
+                        <p>Thank you for your interest in Dielli.</p>
+                        <p>We have successfully received your request.</p>
+                        <p>Your information will be sent to <strong>${installer}</strong>, and they will contact you soon with a personalized quote.</p>
+                        <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;" />
+                        <p style="font-size: 14px; color: #64748b;">
+                            <strong>Summary of your request:</strong><br/>
+                            • Annual Savings: €${calcObj.annualSavings}<br/>
+                            • ROI Timeline: ${calcObj.roiYears} years<br/>
+                            • Panels Needed: ${calcObj.panels}
+                        </p>
+                        <p>Best regards,<br/><strong>Dielli Team</strong></p>
                     </div>
                 `
             };
 
             // --- EMAIL 2: TO INSTALLER (New Lead Alert) ---
-            const installerMailOptions = {
-                from: `"DIELL Solar Leads" <${process.env.SMTP_USER}>`,
-                to: installerEmail || 'leads@diell-solar.com', // Fallback
+            const installerEmailData = {
+                from: 'Dielli Leads <onboarding@resend.dev>',
+                to: [installerEmail || 'leads@diell-solar.com'],
                 subject: `NEW LEAD: ${name} ${surname} (DIELL Solar)`,
                 html: `
                     <div style="font-family: sans-serif; padding: 20px; color: #333; border: 1px solid #e2e8f0; border-radius: 8px;">
-                        <h2 style="color: #2563eb;">New Solar Inquiry Received</h2>
+                        <h2 style="color: #10b981;">New Solar Inquiry Received</h2>
                         <p>A new customer has requested a quote from <strong>${installer}</strong> via the DIELL Mobile App.</p>
                         
                         <div style="background: #f8fafc; padding: 15px; border-radius: 8px;">
@@ -130,7 +121,7 @@ router.post('/', upload.single('floorPlan'), async (req, res) => {
                             <ul>
                                 <li><strong>Estimated Capacity:</strong> ${calcObj.systemKw} kW</li>
                                 <li><strong>Panels Required:</strong> ${calcObj.panels}</li>
-                                <li><strong>Estimated Project Cost:</strong> €${calcObj.estimatedCost.toLocaleString()}</li>
+                                <li><strong>Estimated Project Cost:</strong> €${(calcObj.estimatedCost || 0).toLocaleString()}</li>
                             </ul>
                         </div>
                         
@@ -142,18 +133,18 @@ router.post('/', upload.single('floorPlan'), async (req, res) => {
             };
 
             try {
-                console.log(`[EMAIL DISPATCH] Dispatching User Thank You to: ${email}`);
-                await transporter.sendMail(userMailOptions);
+                console.log(`[RESEND DISPATCH] Dispatching User Thank You to: ${email}`);
+                await resend.emails.send(userEmailData);
                 
-                console.log(`[EMAIL DISPATCH] Dispatching Installer Alert to: ${installerEmail}`);
-                await transporter.sendMail(installerMailOptions);
+                console.log(`[RESEND DISPATCH] Dispatching Installer Alert to: ${installerEmail}`);
+                await resend.emails.send(installerEmailData);
 
-                console.log(`[EMAIL SUCCESS] Dual-delivery completed.`);
-            } catch (mailError) {
-                console.warn(`[EMAIL ERROR] Dual transit failed: ${mailError.message}`);
+                console.log(`[RESEND SUCCESS] Dual-delivery completed.`);
+            } catch (resendError) {
+                console.warn(`[RESEND ERROR] delivery failed: ${resendError.message}`);
             }
         } else {
-            console.warn(`[EMAIL WARNING] SMTP credentials missing. Transit skipped.`);
+            console.warn(`[RESEND WARNING] API Key missing. Transit skipped.`);
         }
 
         res.json({
