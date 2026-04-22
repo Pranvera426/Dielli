@@ -213,5 +213,23 @@
       "roiYears": "4.9"
     },
     "syncedToCloud": false
+  },
+  {
+    "id": 1776888238555,
+    "timestamp": "2026-04-22T20:03:58.555Z",
+    "name": "User",
+    "surname": "Lastname",
+    "phone": "+38343871261",
+    "email": "username@gmail.com",
+    "installer": "EcoPower Solutions",
+    "calculations": {
+      "monthlyUsage": 1026,
+      "systemKw": "17.10",
+      "panels": 38,
+      "estimatedCost": 20520,
+      "annualSavings": 1847,
+      "roiYears": "11.1"
+    },
+    "syncedToCloud": false
   }
 ]
