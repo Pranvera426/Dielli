@@ -28,7 +28,14 @@ const supabase = createClient(
 // RESEND CLIENT INITIALIZATION
 const resend = new Resend(process.env.RESEND_API_KEY || 're_placeholder');
 
-router.post('/', upload.single('floorPlan'), async (req, res) => {
+// Custom middleware to handle both JSON and Multipart
+router.post('/', (req, res, next) => {
+    const contentType = req.headers['content-type'] || '';
+    if (contentType.includes('multipart/form-data')) {
+        return upload.single('floorPlan')(req, res, next);
+    }
+    next();
+}, async (req, res) => {
     try {
         const { name, surname, phone, email, installer, installerEmail, calculations } = req.body;
         const calcObj = JSON.parse(calculations || '{}');

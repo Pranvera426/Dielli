@@ -45,7 +45,7 @@ import {
 
 const { width } = Dimensions.get('window');
 
-const API_BASE = 'https://danny-san-looking-always.trycloudflare.com';
+const API_BASE = 'https://aaron-embedded-hood-bouquet.trycloudflare.com';
 
 const ROOF_MATERIALS = [
   { id: 'shingle', label: 'Composition Shingle', factor: 1.0, icon: Home },
@@ -114,19 +114,12 @@ const BottomNav = ({ activeTab, setView }) => (
 // Helper for consistent headers
 const BrandingHeader = ({ setView, backView, title = "DIELL", showBack = true }) => (
   <View style={styles.header}>
-    <View style={styles.headerTop}>
-      {showBack ? (
+    <View style={[styles.headerTop, { justifyContent: 'flex-start' }]}>
+      {showBack && (
         <TouchableOpacity style={styles.backButtonRound} onPress={() => setView(backView)}>
           <ChevronLeft size={24} color="#1c2e0e" />
         </TouchableOpacity>
-      ) : <View style={{ width: 44 }} />}
-      <View style={styles.profileBadge}>
-        <Text style={styles.profileName}>{title}</Text>
-      </View>
-      <TouchableOpacity style={styles.menuButton}>
-        <View style={styles.menuLine} />
-        <View style={[styles.menuLine, { width: 14 }]} />
-      </TouchableOpacity>
+      )}
     </View>
   </View>
 );
@@ -141,19 +134,7 @@ const InputScreen = ({
   <View style={{flex: 1}}>
     <ScrollView contentContainerStyle={styles.scrollContent} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
       <View style={styles.header}>
-        <View style={styles.headerTop}>
-          <View style={styles.profileBadge}>
-            <Image 
-              source={{ uri: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=1974&auto=format&fit=crop' }} 
-              style={styles.avatar} 
-            />
-            <Text style={styles.profileName}>Solar Quest</Text>
-          </View>
-          <TouchableOpacity style={styles.menuButton}>
-            <View style={styles.menuLine} />
-            <View style={[styles.menuLine, { width: 14 }]} />
-          </TouchableOpacity>
-        </View>
+        {/* Removed Header Buttons as requested */}
         <Text style={styles.heroTitle}>Configure Your{"\n"}Solar Power</Text>
       </View>
 
@@ -295,16 +276,12 @@ const ResultsScreen = ({ results, setView, activeScenario, setActiveScenario }) 
     <View style={{flex: 1}}>
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         <View style={styles.header}>
-          <View style={styles.headerTop}>
-            <TouchableOpacity style={styles.backButtonRound} onPress={() => setView('input')}>
+          <View style={[styles.headerTop, { justifyContent: 'flex-start' }]}>
+            <TouchableOpacity 
+              style={styles.backButtonRound}
+              onPress={() => setView('input')}
+            >
               <ChevronLeft size={24} color="#1c2e0e" />
-            </TouchableOpacity>
-            <View style={styles.profileBadge}>
-              <Text style={styles.profileName}>Dashboard</Text>
-            </View>
-            <TouchableOpacity style={styles.menuButton}>
-              <View style={styles.menuLine} />
-              <View style={[styles.menuLine, { width: 14 }]} />
             </TouchableOpacity>
           </View>
         </View>
@@ -778,11 +755,6 @@ const styles = StyleSheet.create({
 
   // New Header Styles
   headerTop: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 24 },
-  profileBadge: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff', padding: 6, paddingRight: 16, borderRadius: 100 },
-  avatar: { width: 36, height: 36, borderRadius: 18 },
-  profileName: { fontSize: 14, fontWeight: '700', color: '#1c2e0e', marginLeft: 10 },
-  menuButton: { width: 44, height: 44, backgroundColor: '#fff', borderRadius: 22, alignItems: 'center', justifyContent: 'center', gap: 4 },
-  menuLine: { width: 20, height: 2, backgroundColor: '#1c2e0e', borderRadius: 2 },
   heroTitle: { fontSize: 40, fontWeight: '700', color: '#1c2e0e', lineHeight: 46, letterSpacing: -1 },
 
   // Input styles

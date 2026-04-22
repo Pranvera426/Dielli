@@ -105,5 +105,113 @@
       "roiYears": "3.7"
     },
     "syncedToCloud": false
+  },
+  {
+    "id": 1775765005108,
+    "timestamp": "2026-04-09T20:03:25.108Z",
+    "name": "Pranvera",
+    "surname": "Haliti",
+    "phone": "+38349871261",
+    "email": "pranverahalitiii@gmail.com",
+    "installer": "EcoPower Solutions",
+    "calculations": {
+      "monthlyUsage": 675,
+      "systemKw": "11.25",
+      "panels": 25,
+      "estimatedCost": 13500,
+      "annualSavings": 1215,
+      "roiYears": "11.1"
+    },
+    "syncedToCloud": false
+  },
+  {
+    "id": 1776698218854,
+    "timestamp": "2026-04-20T15:16:58.854Z",
+    "name": "Pranvera",
+    "surname": "Haliti",
+    "phone": "043871261",
+    "email": "pranverahalitiii@gmail.com",
+    "installer": "EcoPower Solutions",
+    "calculations": {
+      "monthlyUsage": 668,
+      "systemKw": "4.95",
+      "panels": 11,
+      "estimatedCost": 5940,
+      "annualSavings": 1203,
+      "roiYears": "4.9"
+    },
+    "syncedToCloud": false
+  },
+  {
+    "id": 1776698696280,
+    "timestamp": "2026-04-20T15:24:56.280Z",
+    "name": "Orgesa ",
+    "surname": "Krasniqi",
+    "phone": "+38345266110",
+    "email": "orgesakrasniqi70@gmail.com",
+    "installer": "EcoPower Solutions",
+    "calculations": {
+      "monthlyUsage": 668,
+      "systemKw": "4.95",
+      "panels": 11,
+      "estimatedCost": 5940,
+      "annualSavings": 1203,
+      "roiYears": "4.9"
+    },
+    "syncedToCloud": false
+  },
+  {
+    "id": 1776699564131,
+    "timestamp": "2026-04-20T15:39:24.131Z",
+    "name": "Pranvera",
+    "surname": "Haliti",
+    "phone": "043871261",
+    "email": "pranverahalitiii@gmail.com",
+    "installer": "EcoPower Solutions",
+    "calculations": {
+      "monthlyUsage": 668,
+      "systemKw": "4.95",
+      "panels": 11,
+      "estimatedCost": 5940,
+      "annualSavings": 1203,
+      "roiYears": "4.9"
+    },
+    "syncedToCloud": false
+  },
+  {
+    "id": 1776780428745,
+    "timestamp": "2026-04-21T14:07:08.745Z",
+    "name": "Pranvera ",
+    "surname": "Haliti",
+    "phone": "043871261",
+    "email": "pranverahalitiii@gmail.con",
+    "installer": "EcoPower Solutions",
+    "calculations": {
+      "monthlyUsage": 729,
+      "systemKw": "4.05",
+      "panels": 9,
+      "estimatedCost": 4860,
+      "annualSavings": 1312,
+      "roiYears": "3.7"
+    },
+    "syncedToCloud": false
+  },
+  {
+    "id": 1776884701453,
+    "timestamp": "2026-04-22T19:05:01.453Z",
+    "name": "Pranvera",
+    "surname": "Haliti",
+    "phone": "043871261",
+    "email": "pranverahalitiii@gmail.com",
+    "installer": "EcoPower Solutions",
+    "calculations": {
+      "monthlyUsage": 668,
+      "systemKw": "4.95",
+      "panels": 11,
+      "estimatedCost": 5940,
+      "annualSavings": 1203,
+      "roiYears": "4.9"
+    },
+    "syncedToCloud": false
   }
 ]
